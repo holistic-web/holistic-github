@@ -43,8 +43,25 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+
+    '@nuxtjs/firebase'
   ],
+
+  firebase: {
+    config: {
+      apiKey: 'AIzaSyCyUWEveudOFamvLnOsgaVzgGFmRiN2rwM',
+      authDomain: 'holistic-github.firebaseapp.com',
+      projectId: 'holistic-github',
+      storageBucket: 'holistic-github.appspot.com',
+      messagingSenderId: '198174863040',
+      appId: '1:198174863040:web:4a349bd73461d94aba4725',
+      measurementId: 'G-JLWQJ6BJ60'
+    },
+    services: {
+      functions: true
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

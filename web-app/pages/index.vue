@@ -1,5 +1,5 @@
 <template>
-  <Tutorial />
+  <GithubProfile />
 </template>
 
 <script>
