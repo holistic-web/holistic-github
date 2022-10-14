@@ -8,7 +8,7 @@ on:
     - 'web-app/**'
 
 jobs:
-  ci:
+  web-app_deploy:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -42,8 +42,8 @@ jobs:
         npm run generate
 
     - name: Deploy to Firebase
-    uses: w9jds/firebase-action@master
-    with:
-      args: deploy --only hosting
-    env:
-      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      uses: w9jds/firebase-action@master
+      with:
+        args: deploy --only hosting
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

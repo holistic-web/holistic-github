@@ -8,26 +8,33 @@ on:
     - 'functions/**'
 
 jobs:
-  build-and-deploy:
-
-    runs-on: ubuntu-latest
+  functions_deploy:
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [16.x]
+        os: [ubuntu-latest]
+        node: [16]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout 🛎
+      uses: actions/checkout@master
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: Setup node env 🏗
+      uses: actions/setup-node@v2.1.5
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ matrix.node }}
+        check-latest: true
 
-    - name: Install dependencies
+    - name: Install dependencies 👨🏻‍💻
       run: |
         cd functions
-        npm ci
+        npm ci --prefer-offline --no-audit
+
+    - name: Run linter 👀
+      run: |
+        cd functions
+        npm run lint
 
     - name: Deploy to Firebase
       uses: w9jds/firebase-action@master
