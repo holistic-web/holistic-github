@@ -26,7 +26,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd cloud-functions/functions
+        cd functions
         npm ci
 
     - name: Deploy to Firebase
@@ -35,4 +35,3 @@ jobs:
         args: deploy --only functions
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        PROJECT_PATH: 'cloud-functions'
