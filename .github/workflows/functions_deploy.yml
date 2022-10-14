@@ -1,4 +1,4 @@
-name: functions-deploy
+name: functions_deploy
 
 on:
   push:
