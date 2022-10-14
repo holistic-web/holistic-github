@@ -1,6 +1,6 @@
-const getSubscriptions = require("./getSubscriptions");
+const getComments = require("./getComments");
 
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
-exports.getSubscriptions = getSubscriptions;
+exports.getComments = getComments;
