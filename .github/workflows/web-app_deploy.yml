@@ -17,33 +17,33 @@ jobs:
         node: [16]
 
     steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@master
+    - name: Checkout 🛎
+      uses: actions/checkout@master
 
-      - name: Setup node env 🏗
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: ${{ matrix.node }}
-          check-latest: true
-
-      - name: Install dependencies 👨🏻‍💻
-        run: |
-          cd web-app
-          npm ci --prefer-offline --no-audit
-
-      - name: Run linter 👀
-        run: |
-          cd web-app
-          npm run lint
-
-      - name: Generate static site 🛠️
-        run: |
-          cd web-app
-          npm run generate
-
-      - name: Deploy to Firebase
-      uses: w9jds/firebase-action@master
+    - name: Setup node env 🏗
+      uses: actions/setup-node@v2.1.5
       with:
-        args: deploy --only hosting
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        node-version: ${{ matrix.node }}
+        check-latest: true
+
+    - name: Install dependencies 👨🏻‍💻
+      run: |
+        cd web-app
+        npm ci --prefer-offline --no-audit
+
+    - name: Run linter 👀
+      run: |
+        cd web-app
+        npm run lint
+
+    - name: Generate static site 🛠️
+      run: |
+        cd web-app
+        npm run generate
+
+    - name: Deploy to Firebase
+    uses: w9jds/firebase-action@master
+    with:
+      args: deploy --only hosting
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
