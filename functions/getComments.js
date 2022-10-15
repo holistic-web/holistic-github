@@ -9,7 +9,6 @@ module.exports = functions.https.onCall(async (userId) => {
     data: {login},
   } = await octokit.rest.users.getAuthenticated();
   console.log("Hello, %s", login);
-  console.log("Hello, %s", login);
 
   functions.logger.info("Hello logs!", {structuredData: true});
   return {
