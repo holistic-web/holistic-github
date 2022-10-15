@@ -5,5 +5,5 @@ module.exports = functions.https.onRequest((request, response) => {
   response.set("Access-Control-Allow-Headers", "content-type");
 
   functions.logger.info("Hello logs!", {structuredData: true});
-  response.send("Hello from Firebase!");
+  response.send({data: "Hello from Firebase!"});
 });
