@@ -1,9 +1,6 @@
 const functions = require("firebase-functions");
 
-module.exports = functions.https.onRequest((request, response) => {
-  response.set("Access-Control-Allow-Origin", "*");
-  response.set("Access-Control-Allow-Headers", "content-type");
-
+module.exports = functions.https.onCall((userId) => {
   functions.logger.info("Hello logs!", {structuredData: true});
-  response.send({data: "Hello from Firebase!"});
+  return {data: `Hello from Firebase!, userId=${userId}`};
 });
