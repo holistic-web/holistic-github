@@ -1,21 +1,28 @@
 <template>
   <b-container>
     <p>Hello from GithubProfile ID page</p>
-    {{ comments }}
+    <b-table v-if="tableData" striped :items="tableData" />
   </b-container>
 </template>
 
 <script>
 export default {
   fetch () {
-    this.$store.dispatch('GithubUser/fetchComments', this.id)
+    this.$store.dispatch('GithubUser/fetchIssues', this.userId)
   },
   computed: {
-    id () {
+    userId () {
       return this.$route.params.id
     },
-    comments () {
-      return this.$store.state.GithubUser.comments
+    issues () {
+      return this.$store.state.GithubUser.issues
+    },
+    tableData () {
+      const data = []
+      if (this.issues) {
+        data.push({ field: 'issues', count: this.issues.length })
+      }
+      return data
     }
   }
 }

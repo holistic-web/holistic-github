@@ -1,24 +1,24 @@
 export const state = () => ({
-  comments: 0
+  issues: null
 })
 
 export const getters = {
-  getComments (state) {
-    return state.comments
+  getIssues (state) {
+    return state.issues
   }
 }
 
 export const mutations = {
-  setComments (state, comments) {
-    state.comments = comments
+  setIssues (state, issues) {
+    state.issues = issues
   }
 }
 
 export const actions = {
-  async fetchComments ({ state }, userId) {
-    const getComments = this.$fire.functions.httpsCallable('getComments')
-    const { data } = await getComments(userId)
-    this.commit('GithubUser/setComments', data)
+  async fetchIssues ({ state }, userId) {
+    const getIssues = this.$fire.functions.httpsCallable('getIssues')
+    const { data } = await getIssues(userId)
+    this.commit('GithubUser/setIssues', data)
     return data
   }
 }
