@@ -1,8 +1,8 @@
 const functions = require("firebase-functions");
 const {Octokit} = require("octokit");
 
-const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN;
-const octokit = new Octokit({auth: GITHUB_ACCESS_TOKEN});
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const octokit = new Octokit({auth: GITHUB_TOKEN});
 
 module.exports = functions.https.onCall(async (userId) => {
   const {
@@ -16,3 +16,4 @@ module.exports = functions.https.onCall(async (userId) => {
     userId,
   };
 });
+
