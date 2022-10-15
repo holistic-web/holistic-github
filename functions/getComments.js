@@ -1,5 +1,5 @@
 const functions = require("firebase-functions");
-const Octokit = require("octokit");
+const {Octokit} = require("octokit");
 
 const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN;
 const octokit = new Octokit({auth: GITHUB_ACCESS_TOKEN});
