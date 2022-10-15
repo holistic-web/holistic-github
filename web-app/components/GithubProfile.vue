@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <b-container>
     <p>Hello from GithubProfile</p>
     {{ comments }}
-  </div>
+  </b-container>
 </template>
 
 <script>
