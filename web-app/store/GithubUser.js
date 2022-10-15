@@ -16,10 +16,9 @@ export const mutations = {
 
 export const actions = {
   async fetchComments ({ state }, userId) {
-    // make request
-    const getComments = this.$fire.functions.httpsCallable('getComments', userId)
-    const response = await getComments()
-    this.commit('GithubUser/setComments', response)
-    return response
+    const getComments = this.$fire.functions.httpsCallable('getComments')
+    const { data } = await getComments(userId)
+    this.commit('GithubUser/setComments', data)
+    return data
   }
 }
