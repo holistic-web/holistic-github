@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <p>Hello from GithubProfile</p>
+    <p>GitHub Stats - <b>{{ userId }}</b></p>
     {{ issues }}
   </b-container>
 </template>
@@ -10,10 +10,13 @@ export default {
   computed: {
     issues () {
       return this.$store.state.GithubUser.issues
+    },
+    userId () {
+      return this.$store.state.GithubUser.userId
     }
   },
   created () {
-    this.$store.dispatch('GithubUser/fetchIssues')
+    this.$store.dispatch('GithubUser/fetchUserStats')
   }
 }
 </script>
