@@ -16,9 +16,9 @@ export const mutations = {
 
 export const actions = {
   async fetchUserStats ({ state }, userId) {
-    const getIssues = this.$fire.functions.httpsCallable('getIssues')
-    const { data } = await getIssues(userId)
-    this.commit('GithubUser/setIssues', data)
-    return data
+    const getUserStats = this.$fire.functions.httpsCallable('getUserStats')
+    const { data: userStats } = await getUserStats(userId)
+    this.commit('GithubUser/setIssues', userStats.issues)
+    return userStats
   }
 }
