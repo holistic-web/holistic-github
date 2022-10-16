@@ -6,7 +6,7 @@ https://holistic-github.web.app/
 
 ## Features
 ### Stats Dashboard:
-- comments
+- issues
 - most used reactions (TBC)
 - most active day (TBC)
 

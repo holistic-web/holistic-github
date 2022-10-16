@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <p>Hello from GithubProfile ID page</p>
+    <p>GitHub Stats - <b>{{ userId }}</b></p>
     <b-table v-if="tableData" striped :items="tableData" />
   </b-container>
 </template>
@@ -8,7 +8,7 @@
 <script>
 export default {
   fetch () {
-    this.$store.dispatch('GithubUser/fetchIssues', this.userId)
+    this.$store.dispatch('GithubUser/fetchUserStats', this.userId)
   },
   computed: {
     userId () {
