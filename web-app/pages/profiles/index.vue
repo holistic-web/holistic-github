@@ -1,12 +1,14 @@
 <template>
   <b-container>
     <p>Search for a profile:</p>
-    <b-form-input v-model="githubUsername" placeholder="Github Username" />
-    <NuxtLink
-      :to="`/profiles/${githubUsername}`"
-    >
-      <b-button>Search</b-button>
-    </NuxtLink>
+    <b-form-input
+      v-model="githubUsername"
+      placeholder="Github Username"
+      @keyup.enter="search"
+    />
+    <b-button @click="search">
+      Search
+    </b-button>
   </b-container>
 </template>
 
@@ -15,6 +17,11 @@ export default {
   data () {
     return {
       githubUsername: ''
+    }
+  },
+  methods: {
+    search () {
+      this.$router.push(`/profiles/${this.githubUsername}`)
     }
   }
 }
