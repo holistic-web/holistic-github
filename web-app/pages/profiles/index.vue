@@ -6,7 +6,7 @@
       placeholder="Github Username"
       @keyup.enter="search"
     />
-    <b-button @click="search">
+    <b-button variant="primary" class="mt-2" @click="search">
       Search
     </b-button>
   </b-container>
