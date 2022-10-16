@@ -60,6 +60,9 @@ export default {
     },
     services: {
       functions: true
+      // functions: {
+      //   emulatorPort: 5001
+      // }
     }
   },
 
