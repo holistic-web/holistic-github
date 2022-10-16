@@ -1,10 +1,9 @@
-const functions = require("firebase-functions");
 const {Octokit} = require("octokit");
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const octokit = new Octokit({auth: GITHUB_TOKEN});
 
-const getAllIssues = async (userId) => {
+module.exports.getAllIssues = async (userId) => {
   let hasMoreData = true;
   let page = 1;
   const issues = [];
@@ -22,11 +21,3 @@ const getAllIssues = async (userId) => {
   }
   return issues;
 };
-
-module.exports = functions.https.onCall(async (userId) => {
-  const issues = await getAllIssues(userId);
-
-  functions.logger.info("Hello logs!", {structuredData: true});
-  return issues;
-});
-
