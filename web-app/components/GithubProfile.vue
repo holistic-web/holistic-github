@@ -1,19 +1,19 @@
 <template>
   <b-container>
     <p>Hello from GithubProfile</p>
-    {{ comments }}
+    {{ issues }}
   </b-container>
 </template>
 
 <script>
 export default {
   computed: {
-    comments () {
-      return this.$store.state.GithubUser.comments
+    issues () {
+      return this.$store.state.GithubUser.issues
     }
   },
   created () {
-    this.$store.dispatch('GithubUser/fetchComments')
+    this.$store.dispatch('GithubUser/fetchIssues')
   }
 }
 </script>
