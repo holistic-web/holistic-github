@@ -1,16 +1,16 @@
 export const state = () => ({
-  issues: null
+  stats: null
 })
 
 export const getters = {
-  getIssues (state) {
-    return state.issues
+  getStats (state) {
+    return state.stats
   }
 }
 
 export const mutations = {
-  setIssues (state, issues) {
-    state.issues = issues
+  setStats (state, stats) {
+    state.stats = stats
   }
 }
 
@@ -18,7 +18,7 @@ export const actions = {
   async fetchUserStats ({ state }, userId) {
     const getUserStats = this.$fire.functions.httpsCallable('getUserStats')
     const { data: userStats } = await getUserStats(userId)
-    this.commit('GithubUser/setIssues', userStats.issues)
+    this.commit('GithubUser/setStats', userStats)
     return userStats
   }
 }

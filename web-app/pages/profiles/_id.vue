@@ -19,13 +19,16 @@ export default {
     this.isLoading = false
   },
   computed: {
-    issues () {
-      return this.$store.state.GithubUser.issues
+    userStats () {
+      return this.$store.state.GithubUser.stats
     },
     tableData () {
       const data = []
-      if (this.issues) {
-        data.push({ field: 'issues', count: this.issues.length })
+      for (const key in this.userStats) {
+        data.push({
+          key,
+          value: this.userStats[key].length
+        })
       }
       return data
     }
