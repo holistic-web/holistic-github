@@ -5,7 +5,7 @@
     <template v-else>
       <section>
         <b-img class="ProfileID__image" :src="user.avatar_url" rounded fluid />
-        <span>User since: {{ user.created_at }}</span>
+        <span>User since: {{ creationDate }}</span>
       </section>
       <b-table striped :items="tableData" />
     </template>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   data () {
     return {
@@ -38,18 +40,21 @@ export default {
     user () {
       return this.userStats.user
     },
+    creationDate () {
+      return moment(this.user.created_at).format('MMMM Do YYYY')
+    },
     tableData () {
       const data = [
         {
           title: 'Pull Requests',
           count: this.pullRequests.length,
-          empty: (this.pullRequests.filter(pr => pr.body === '').length),
+          empty: this.pullRequests.filter(pr => pr.body === '').length,
           closed: this.pullRequests.filter(pr => pr.state === 'closed').length
         },
         {
           title: 'Issues',
           count: this.issues.length,
-          empty: (this.issues.filter(issue => issue.body === '').length),
+          empty: this.issues.filter(issue => issue.body === '').length,
           closed: this.issues.filter(issue => issue.state === 'closed').length
         }
       ]
