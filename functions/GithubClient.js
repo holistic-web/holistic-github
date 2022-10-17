@@ -21,3 +21,22 @@ module.exports.getAllIssues = async (userId) => {
   }
   return issues;
 };
+
+module.exports.getAllPullRequests = async (userId) => {
+  let hasMoreData = true;
+  let page = 1;
+  const pullRequests = [];
+  while (hasMoreData) {
+    const response = await octokit.rest.search.issuesAndPullRequests({
+      q: `is:pr author:${userId}`,
+      per_page: 100,
+      page,
+    });
+    pullRequests.push(...response.data.items);
+    page++;
+    if (response.data.items.length < 100) {
+      hasMoreData = false;
+    }
+  }
+  return pullRequests;
+};

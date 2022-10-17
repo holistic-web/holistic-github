@@ -1,9 +1,10 @@
 const functions = require("firebase-functions");
-const {getAllIssues} = require("./GithubClient");
+const {getAllIssues, getAllPullRequests} = require("./GithubClient");
 
 
 module.exports = functions.https.onCall(async (userId) => {
   const issues = await getAllIssues(userId);
-  return {issues};
+  const pullRequests = await getAllPullRequests(userId);
+  return {issues, pullRequests};
 });
 
