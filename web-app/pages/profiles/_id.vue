@@ -22,14 +22,27 @@ export default {
     userStats () {
       return this.$store.state.GithubUser.stats
     },
+    pullRequests () {
+      return this.userStats.pullRequests
+    },
+    issues () {
+      return this.userStats.issues
+    },
     tableData () {
-      const data = []
-      for (const key in this.userStats) {
-        data.push({
-          key,
-          value: this.userStats[key].length
-        })
-      }
+      const data = [
+        {
+          title: 'Pull Requests',
+          count: this.pullRequests.length,
+          empty: (this.pullRequests.filter(pr => pr.body === '').length),
+          closed: this.pullRequests.filter(pr => pr.state === 'closed').length
+        },
+        {
+          title: 'Issues',
+          count: this.issues.length,
+          empty: (this.issues.filter(issue => issue.body === '').length),
+          closed: this.issues.filter(issue => issue.state === 'closed').length
+        }
+      ]
       return data
     }
   }
