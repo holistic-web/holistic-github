@@ -40,3 +40,8 @@ module.exports.getAllPullRequests = async (userId) => {
   }
   return pullRequests;
 };
+
+module.exports.getUser = async (userId) => {
+  const {data} = await octokit.request(`GET /users/${userId}`);
+  return data;
+};
