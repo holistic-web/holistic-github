@@ -1,7 +1,8 @@
 <template>
   <b-container>
     <p>GitHub Stats - <b>{{ userId }}</b></p>
-    <b-table v-if="!isLoading" striped :items="tableData" />
+    <page-loader v-if="isLoading" />
+    <b-table v-else striped :items="tableData" />
   </b-container>
 </template>
 
