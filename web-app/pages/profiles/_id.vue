@@ -2,7 +2,13 @@
   <b-container>
     <p>GitHub Stats - <b>{{ userId }}</b></p>
     <page-loader v-if="isLoading" />
-    <b-table v-else striped :items="tableData" />
+    <template v-else>
+      <section>
+        <b-img class="ProfileID__image" :src="user.avatar_url" rounded fluid />
+        <span>User since: {{ user.created_at }}</span>
+      </section>
+      <b-table striped :items="tableData" />
+    </template>
   </b-container>
 </template>
 
@@ -29,6 +35,9 @@ export default {
     issues () {
       return this.userStats.issues
     },
+    user () {
+      return this.userStats.user
+    },
     tableData () {
       const data = [
         {
@@ -49,3 +58,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.ProfileID__image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1rem;
+}
+</style>
