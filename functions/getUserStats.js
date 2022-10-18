@@ -1,11 +1,12 @@
 const functions = require("firebase-functions");
-const {getAllIssues, getAllPullRequests, getUser} = require("./GithubClient");
+const GithubClient = require("./GithubClient");
 
 
 module.exports = functions.https.onCall(async (userId) => {
-  const issues = await getAllIssues(userId);
-  const pullRequests = await getAllPullRequests(userId);
-  const user = await getUser(userId);
+  const ghClient = new GithubClient();
+  const issues = await ghClient.getAllIssues(userId);
+  const pullRequests = await ghClient.getAllPullRequests(userId);
+  const user = await ghClient.getUser(userId);
   return {user, issues, pullRequests};
 });
 
