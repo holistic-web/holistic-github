@@ -59,10 +59,11 @@ export default {
       measurementId: 'G-JLWQJ6BJ60'
     },
     services: {
-      functions: true
+      functions: true,
       // functions: {
       //   emulatorPort: 5001
-      // }
+      // },
+      auth: true
     }
   },
 
