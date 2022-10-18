@@ -1,22 +1,19 @@
 <template>
-  <div>
-    <b-navbar>
-      <NuxtLink to="/">
-        <b-navbar-brand>
-          Holistic Github
-        </b-navbar-brand>
-      </NuxtLink>
+  <b-navbar variant="primary">
+    <NuxtLink to="/">
+      <b-navbar-brand>
+        Holistic Github
+      </b-navbar-brand>
+    </NuxtLink>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav>
+        <NuxtLink to="/profiles">
           <b-nav-item>
-            <NuxtLink to="/profiles">
-              Profiles
-            </NuxtLink>
+            Profiles
           </b-nav-item>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
-    <nuxt />
-  </div>
+        </NuxtLink>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
 </template>
