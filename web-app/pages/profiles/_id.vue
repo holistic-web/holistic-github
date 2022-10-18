@@ -8,6 +8,7 @@
         <span>User since: {{ creationDate }}</span>
       </section>
       <b-table striped :items="tableData" />
+      <profile-tips :issues="issues" :pull-requests="pullRequests" />
     </template>
   </b-container>
 </template>
