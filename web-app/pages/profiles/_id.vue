@@ -2,7 +2,7 @@
   <b-container>
     <p>GitHub Stats - <b>{{ userId }}</b></p>
 
-    <profile-user />
+    <profile-user :user-id="userId" />
 
     <page-loader v-if="isLoading" />
     <template v-else>
@@ -22,21 +22,18 @@ export default {
   },
   async fetch () {
     this.isLoading = true
-    await this.$store.dispatch('GithubUser/fetchUserStats', this.userId)
+    await Promise.all([
+      this.$store.dispatch('GithubUser/fetchPullRequests', this.userId),
+      this.$store.dispatch('GithubUser/fetchIssues', this.userId)
+    ])
     this.isLoading = false
   },
   computed: {
-    userStats () {
-      return this.$store.state.GithubUser.stats
-    },
     pullRequests () {
-      return this.userStats.pullRequests
+      return this.$store.state.GithubUser.pullRequests
     },
     issues () {
-      return this.userStats.issues
-    },
-    user () {
-      return this.userStats.user
+      return this.$store.state.GithubUser.issues
     },
     tableData () {
       const data = [

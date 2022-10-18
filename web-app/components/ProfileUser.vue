@@ -35,13 +35,28 @@ import moment from 'moment'
 
 export default {
   name: 'ProfileUser',
+  props: {
+    userId: {
+      type: String,
+      required: true
+    }
+  },
   computed: {
     user () {
-      if (!this.$store.state.GithubUser.stats) { return null }
-      return this.$store.state.GithubUser.stats.user
+      return this.$store.state.GithubUser.data
     },
     creationDate () {
       return moment(this.user.created_at).format('MMMM Do YYYY')
+    }
+  },
+  watch: {
+    user: {
+      immediate: true,
+      handler () {
+        if (!this.user || this.user.login !== this.userId) {
+          this.$store.dispatch('GithubUser/fetchData', this.userId)
+        }
+      }
     }
   }
 }
