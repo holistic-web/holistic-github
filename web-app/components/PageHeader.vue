@@ -1,5 +1,5 @@
 <template>
-  <b-navbar variant="primary">
+  <b-navbar class="PageHeader" variant="primary">
     <NuxtLink to="/">
       <b-navbar-brand>
         Holistic Github
@@ -8,12 +8,20 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <NuxtLink to="/profiles">
-          <b-nav-item>
+        <b-nav-item>
+          <NuxtLink to="/profiles">
             Profiles
-          </b-nav-item>
-        </NuxtLink>
+          </nuxtlink>
+        </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </template>
+
+<style lang="scss">
+.PageHeader {
+  a {
+    color: white;
+  }
+}
+</style>
