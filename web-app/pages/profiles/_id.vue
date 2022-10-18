@@ -1,12 +1,11 @@
 <template>
   <b-container>
     <p>GitHub Stats - <b>{{ userId }}</b></p>
+
+    <profile-user />
+
     <page-loader v-if="isLoading" />
     <template v-else>
-      <section>
-        <b-img class="ProfileID__image" :src="user.avatar_url" rounded fluid />
-        <span>User since: {{ creationDate }}</span>
-      </section>
       <b-table striped :items="tableData" />
       <profile-tips :issues="issues" :pull-requests="pullRequests" />
     </template>
@@ -14,8 +13,6 @@
 </template>
 
 <script>
-import moment from 'moment'
-
 export default {
   data () {
     return {
@@ -40,9 +37,6 @@ export default {
     },
     user () {
       return this.userStats.user
-    },
-    creationDate () {
-      return moment(this.user.created_at).format('MMMM Do YYYY')
     },
     tableData () {
       const data = [
