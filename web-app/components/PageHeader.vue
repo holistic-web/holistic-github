@@ -20,7 +20,7 @@
 
 <style lang="scss">
 .PageHeader {
-  a {
+  a, .navbar-brand, .navbar-brand:hover {
     color: white;
   }
 }
