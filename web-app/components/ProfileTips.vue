@@ -10,7 +10,9 @@
         </b-btn>
       </p>
       <b-collapse v-model="showPullRequests">
-        {{ stalePullRequests }}
+        <li v-for="pr in stalePullRequests" :key="pr.id">
+          <a :href="pr.html_url" target="_blank">{{ pr.title }}</a>
+        </li>
       </b-collapse>
     </section>
 
