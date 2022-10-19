@@ -66,6 +66,11 @@ export default {
 .ProfileUser {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 
   &__header {
     display: flex;
