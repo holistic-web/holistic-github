@@ -16,8 +16,11 @@
             {{ option.text }}
           </b-card-text>
 
-          <b-button variant="primary" @click="shownComponent = option.value">
-            View
+          <b-button
+            :variant="getCardButtonVariant(option.value)"
+            @click="shownComponent = option.value"
+          >
+            {{ getCardButtonText(option.value) }}
           </b-button>
         </b-card>
       </b-card-group>
@@ -82,6 +85,20 @@ export default {
         }
       ]
       return data
+    }
+  },
+  methods: {
+    getCardButtonText (optionValue) {
+      if (this.shownComponent === optionValue) {
+        return 'Selected'
+      }
+      return 'View'
+    },
+    getCardButtonVariant (optionValue) {
+      if (this.shownComponent === optionValue) {
+        return 'primary'
+      }
+      return 'outline-primary'
     }
   }
 }
