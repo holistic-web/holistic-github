@@ -4,10 +4,14 @@
 
     <section v-if="stalePullRequests.length>0">
       <p>
-        You have {{ stalePullRequests.length }} stale pull requests that need attention.
-        <b-btn variant="primary" size="sm" @click="showPullRequests = !showPullRequests">
-          View
+        <b-btn
+          :variant="showPullRequests ? 'primary' : 'outline-primary'"
+          size="sm"
+          @click="showPullRequests = !showPullRequests"
+        >
+          {{ showPullRequests ? 'Hide' : 'View' }}
         </b-btn>
+        You have {{ stalePullRequests.length }} stale pull requests that need attention.
       </p>
       <b-collapse v-model="showPullRequests">
         <li v-for="pr in stalePullRequests" :key="pr.id">
@@ -18,10 +22,14 @@
 
     <section v-if="staleIssues.length>0">
       <p>
-        You have {{ staleIssues.length }} stale issues that need attention.
-        <b-btn variant="primary" size="sm" @click="showIssues = !showIssues">
-          View
+        <b-btn
+          :variant="showIssues ? 'primary' : 'outline-primary'"
+          size="sm"
+          @click="showIssues = !showIssues"
+        >
+          {{ showIssues ? 'Hide' : 'View' }}
         </b-btn>
+        You have {{ staleIssues.length }} stale issues that need attention.
       </p>
       <b-collapse v-model="showIssues">
         <li v-for="issue in staleIssues" :key="issue.id">
