@@ -1,13 +1,39 @@
 <template>
-  <b-container>
+  <b-container class="ProfileID">
     <p>GitHub Stats - <b>{{ userId }}</b></p>
 
     <profile-user :user-id="userId" />
 
     <page-loader v-if="isLoading" />
     <template v-else>
-      <b-table striped :items="tableData" />
-      <profile-tips :issues="issues" :pull-requests="pullRequests" />
+      <b-card-group deck>
+        <b-card
+          v-for="option in componentOptions"
+          :key="option.value"
+          :title="option.title"
+        >
+          <b-card-text>
+            {{ option.text }}
+          </b-card-text>
+
+          <b-button variant="primary" @click="shownComponent = option.value">
+            View
+          </b-button>
+        </b-card>
+      </b-card-group>
+
+      <section class="ProfileID__content">
+        <b-table
+          v-if="shownComponent==='stats'"
+          striped
+          :items="tableData"
+        />
+        <profile-tips
+          v-if="shownComponent==='tips'"
+          :issues="issues"
+          :pull-requests="pullRequests"
+        />
+      </section>
     </template>
   </b-container>
 </template>
@@ -17,7 +43,12 @@ export default {
   data () {
     return {
       userId: this.$route.params.id,
-      isLoading: false
+      isLoading: false,
+      shownComponent: null,
+      componentOptions: [
+        { value: 'tips', title: 'Tips', text: 'View useful tips for this user' },
+        { value: 'stats', title: 'Stats', text: 'View all stats for this user' }
+      ]
     }
   },
   async fetch () {
@@ -56,10 +87,19 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.ProfileID__image {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 1rem;
+<style lang="scss">
+.ProfileID {
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+  }
+
+  &__content {
+    margin-top: 2rem;
+  }
 }
 </style>
