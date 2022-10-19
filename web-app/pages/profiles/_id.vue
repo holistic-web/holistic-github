@@ -89,16 +89,10 @@ export default {
   },
   methods: {
     getCardButtonText (optionValue) {
-      if (this.shownComponent === optionValue) {
-        return 'Selected'
-      }
-      return 'View'
+      return this.shownComponent === optionValue ? 'Selected' : 'Select'
     },
     getCardButtonVariant (optionValue) {
-      if (this.shownComponent === optionValue) {
-        return 'primary'
-      }
-      return 'outline-primary'
+      return this.shownComponent === optionValue ? 'primary' : 'outline-primary'
     }
   }
 }
