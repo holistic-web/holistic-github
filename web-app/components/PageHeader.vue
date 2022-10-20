@@ -1,10 +1,8 @@
 <template>
   <b-navbar class="PageHeader" variant="primary">
-    <NuxtLink to="/">
-      <b-navbar-brand>
-        Holistic Github
-      </b-navbar-brand>
-    </NuxtLink>
+    <b-navbar-brand href="/">
+      Holistic Github
+    </b-navbar-brand>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
@@ -20,8 +18,16 @@
 
 <style lang="scss">
 .PageHeader {
-  a, .navbar-brand, .navbar-brand:hover {
+  a,
+  a:hover,
+  .navbar-brand,
+  .navbar-brand:hover {
     color: white;
+    text-decoration: none;
+  }
+
+  .nuxt-link-active {
+    border-bottom: 2px solid white;
   }
 }
 </style>
