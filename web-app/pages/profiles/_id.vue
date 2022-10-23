@@ -58,7 +58,8 @@ export default {
     this.isLoading = true
     await Promise.all([
       this.$store.dispatch('GithubUser/fetchPullRequests', this.userId),
-      this.$store.dispatch('GithubUser/fetchIssues', this.userId)
+      this.$store.dispatch('GithubUser/fetchIssues', this.userId),
+      this.$store.dispatch('GithubUser/fetchStats', this.userId)
     ])
     this.isLoading = false
   },
@@ -73,15 +74,11 @@ export default {
       const data = [
         {
           title: 'Pull Requests',
-          count: this.pullRequests.length,
-          empty: this.pullRequests.filter(pr => pr.body === '').length,
-          closed: this.pullRequests.filter(pr => pr.state === 'closed').length
+          ...this.$store.state.GithubUser.stats.pullRequests
         },
         {
           title: 'Issues',
-          count: this.issues.length,
-          empty: this.issues.filter(issue => issue.body === '').length,
-          closed: this.issues.filter(issue => issue.state === 'closed').length
+          ...this.$store.state.GithubUser.stats.issues
         }
       ]
       return data

@@ -1,7 +1,8 @@
 export const state = () => ({
   issues: null,
   pullRequests: null,
-  data: null
+  data: null,
+  stats: null
 })
 
 export const getters = {
@@ -13,6 +14,9 @@ export const getters = {
   },
   getData (state) {
     return state.data
+  },
+  getStats (state) {
+    return state.stats
   }
 }
 
@@ -25,6 +29,9 @@ export const mutations = {
   },
   setData (state, data) {
     state.data = data
+  },
+  setStats (state, stats) {
+    state.stats = stats
   }
 }
 
@@ -49,5 +56,12 @@ export const actions = {
     const { data } = await getUser(userId)
     commit('setData', data)
     return data
+  },
+  async fetchStats ({ commit }, userId) {
+    commit('setStats', null)
+    const getProfileStats = this.$fire.functions.httpsCallable('getProfileStats')
+    const { data: stats } = await getProfileStats(userId)
+    commit('setStats', stats)
+    return stats
   }
 }
