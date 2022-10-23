@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     search () {
-      this.$router.push(`/profiles/${this.githubUsername}`)
+      this.$router.push(`/profiles/${this.githubUsername.trim()}`)
     }
   }
 }
