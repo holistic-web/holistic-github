@@ -1,3 +1,6 @@
+const isDev = process.env.NODE_ENV === 'development'
+const useEmulators = false // manually change if emulators needed
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -59,10 +62,11 @@ export default {
       measurementId: 'G-JLWQJ6BJ60'
     },
     services: {
-      functions: true
-      // functions: {
-      //   emulatorPort: 5001
-      // }
+      functions: isDev && useEmulators
+        ? {
+            emulatorPort: 5001
+          }
+        : true
     }
   },
 
