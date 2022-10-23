@@ -15,7 +15,10 @@ exports.getAllPullRequests = functions.https.onCall(async (userId) => {
 });
 
 exports.getUser = functions.https.onCall(async (userId) => {
-  const user = await ghClient.getUser(userId);
+  const user = await ghClient.getUser(userId)
+      .catch((error) => {
+        throw new functions.https.HttpsError("not-found", error.message);
+      });
   return user;
 });
 
